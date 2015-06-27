@@ -1,6 +1,5 @@
 <ion-view >
   <ion-content class="darkBackground">
-      <div class="darkBackground">
           <div class="darkBackground">
               <div class="topBar">
                   <div class="largeFont marginTop">
@@ -11,27 +10,37 @@
                   </div>
               </div>
               <div id="searchBox" class="list list-inset marginLeft" ng-show="showSearch">
-                  <label class="item item-input darkBackground whiteFont">
+                  <label class="item item-input darkBackground whiteFont borderColor">
                       <i class="icon ion-search placeholder-icon whiteFont"></i>
 
                       <form ng-submit="search(query)">
-                          <input type="text" placeholder="Search location and tags" class="whiteFont" ng-model="query" ng-enter="search(query)">
+                          <input type="text" placeholder="Search location OR tags" class="whiteFont" ng-model="query" ng-enter="search(query)">
                         </form>
-</label>
+                    </label>
               </div>
               
-              <div ng-repeat="dates in images" class="dateContainer">
-                  <div class="titleContainer largeFont leftMargin titleBackground darkFont">
-                      {{dates.date}}
+              <div class="contentContainer">
+                  <div class="largeFont contentTitle floatLeft" ng-show="!showSearch">
+                      You are at <span class="accentColor">Brighton Beach</span>
                   </div>
-          
-                  <div ng-repeat="img in dates.src" class="imgContainer" ng-style="{{dinStyle}}">
-                      
-                      <img ng-src="{{img}}" class="pastImage imgDisplay" ng-class="imgClass[$index]">
+                  <div ng-repeat="(keyDate, dates) in images" class="dateContainer">
+
+                      <div class="titleContainer largeFont leftMargin titleBackground darkFont">
+                          {{dates.date}}
+                      </div>
+
+                      <ion-scroll overflow-scroll="true" zooming="false" direction="x" style="width: 400px; height: 430px">
+                          <div class="wide-as-needed" ng-style="{ width : dates.width + 'px' }">
+                              <div ng-repeat="(key,img) in dates.src" class="imgContainer" ng-style="{{dinStyle}} " ng-click="loadPhoto(keyDate, key)">
+
+                                  <img ng-src="{{img}}" class="pastImage imgDisplay" ng-class="imgClass[$index]">
+                              </div>
+
+                          </div>
+                      </ion-scroll>
                   </div>
               </div>
 
           </div>
-      </div>
   </ion-content>
 </ion-view>
