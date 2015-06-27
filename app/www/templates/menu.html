@@ -1,28 +1,30 @@
-<ion-side-menus enable-menu-with-back-views="false">
-  <ion-side-menu-content>
-    <ion-nav-view name="menuContent"></ion-nav-view>
+<ion-side-menus enable-menu-with-back-views="false" >
+  <ion-side-menu-content drag-content="false">
+    <ion-nav-view name="menuContent" ></ion-nav-view>
   </ion-side-menu-content>
 
-  <ion-side-menu side="left">
-    
-    <ion-content class="rightBar">
-        <div class="headerBar titleFont">
-            Settings
-        </div>
-        <div class="container whiteFont">
-            <ion-toggle ng-model="airplaneMode" toggle-class="toggle-calm">Notifications</ion-toggle>
-            <ion-toggle ng-model="airplaneMode" toggle-class="toggle-calm">Flickr Photos</ion-toggle>
-            <div class="item item-input item-select">
-                <div class="input-label">
-                    How Often?
+    <ion-side-menu side="left" >
+
+
+            <ion-content class="rightBar" >
+                <div class="headerBar titleFont">
+                    Settings
                 </div>
-                <select>
-                    <option>Weekly</option>
-                    <option selected>Monthly</option>
-                    <option>Every year</option>
-                </select>
-            </div>
-        </div>
-    </ion-content>
-  </ion-side-menu>
+                <div class="container whiteFont">
+                    <ion-toggle ng-model="notifications" toggle-class="toggle-calm">Notifications</ion-toggle>
+                    <ion-toggle ng-model="flickr" toggle-class="toggle-calm">Flickr Photos</ion-toggle>
+                    <div class="item item-input item-select">
+                        <div class="input-label">
+                            How Often?
+                        </div>
+                        <select>
+                            <option>Weekly</option>
+                            <option selected>Monthly</option>
+                            <option>Every year</option>
+                        </select>
+                    </div>
+                </div>
+            </ion-content>
+        
+    </ion-side-menu>
 </ion-side-menus>

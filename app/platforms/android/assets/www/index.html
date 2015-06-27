@@ -22,8 +22,22 @@
     <script src="js/app.js"></script>
     <script src="js/controllers.js"></script>
     <script src="js/services.js"></script>
+
+     
   </head>
   <body ng-app="starter">
+
+      <script id="modal.html" type="text/ng-template">
+          <div class="modal">
+              <header class="bar bar-header bar-positive">
+                  <h1 class="title">I'm A Modal</h1>
+                  <div class="button button-clear" ng-click="modal.hide()"><span class="icon ion-close"></span></div>
+              </header>
+              <content has-header="true" padding="true">
+                  <p>This is a modal</p>
+              </content>
+          </div>
+      </script>
     <!--
       The nav bar that will be updated as we navigate between views.
     -->
@@ -34,5 +48,11 @@
       have templates inline in this html file if you'd like).
     -->
     <ion-nav-view class="darkBackground"></ion-nav-view>
+
+
   </body>
+
+
+
+
 </html>
