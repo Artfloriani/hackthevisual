@@ -39,6 +39,23 @@
                           </div>
                       </ion-scroll>
                   </div>
+
+                  <div class="dateContainer">
+
+                      <div class="titleContainer largeFont leftMargin titleBackground darkFont">
+                          Flickr Photos
+                      </div>
+
+                      <ion-scroll overflow-scroll="true" zooming="false" direction="x" style="width: 400px; height: 430px">
+                          <div class="wide-as-needed" ng-style="{ width : flickr.width + 'px' }">
+                              <div ng-repeat="(key,img) in flickrPhotos" class="imgContainer" ng-style="{{dinStyle}} " ng-click="loadPhoto(-1, key)">
+
+                                  <img ng-src="{{img}}" class="pastImage imgDisplay" ng-class="imgClass[key]">
+                              </div>
+
+                          </div>
+                      </ion-scroll>
+                  </div>
               </div>
 
           </div>

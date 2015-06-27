@@ -53,7 +53,6 @@
     "plugins\\org.apache.cordova.geolocation\\doc\\ru\\index.md",
     "res\\icons\\ios\\icon-60-3x.png",
     "plugins\\fetch.json",
-    "config.xml",
     "www\\lib\\ionic\\js\\angular\\angular.js",
     "res\\screens\\wp8\\SplashScreenImage.jpg",
     "www\\lib\\ionic\\fonts\\RobotoRegular.woff2",
@@ -143,7 +142,8 @@
     "www\\templates\\tabs.html",
     "res\\icons\\windows\\Square44x44Logo.scale-240.png",
     "res\\screens\\android\\screen-mdpi-portrait.png",
-    "www\\templates\\photo.html"
+    "www\\templates\\photo.html",
+    "config.xml"
   ],
   "deletedFilesIos": [],
   "addedPluginsIos": [
@@ -152,12 +152,9 @@
   "deletedPluginsIos": [],
   "changedFiles": [
     "plugins\\android.json",
-    "www\\templates\\dash.html",
-    "www\\css\\style.css",
-    "www\\templates\\menu.html",
+    "www\\js\\app.js",
     "www\\js\\controllers.js",
-    "www\\index.html",
-    "www\\templates\\photo.html"
+    "www\\templates\\dash.html"
   ],
   "deletedFiles": [],
   "addedPlugins": [],
