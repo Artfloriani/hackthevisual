@@ -11,9 +11,26 @@
                     Settings
                 </div>
                 <div class="container whiteFont">
-                    <ion-toggle ng-model="notifications" toggle-class="toggle-calm">Notifications</ion-toggle>
-                    <ion-toggle ng-model="flickr" toggle-class="toggle-calm">Flickr Photos</ion-toggle>
-                    <div class="item item-input item-select">
+                    <div class="item item-toggle noBorders">
+                        Notifications
+                        <label class="toggle toggle-calm">
+                            <input type="checkbox" ng-model="true">
+                            <div class="track">
+                                <div class="handle"></div>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="item item-toggle noBorders">
+                        Flickr Photos
+                        <label class="toggle toggle-calm">
+                            <input type="checkbox" ng-model="true">
+                            <div class="track">
+                                <div class="handle"></div>
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="item item-input item-select noBorders">
                         <div class="input-label">
                             How Often?
                         </div>

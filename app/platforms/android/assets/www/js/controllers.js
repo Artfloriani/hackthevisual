@@ -1,12 +1,18 @@
 angular.module('starter.controllers', [])
 
-.controller('DashCtrl', function ($scope, pastPhotos, wsAPI, $ionicModal, $http) {
+.controller('DashCtrl', function ($scope, pastPhotos, wsAPI, $ionicModal, $http, $timeout) {
     $scope.images = {};
     var photos = [];
     photos = pastPhotos;
     $scope.images = pastPhotos;
+    $scope.myPhotos = {};
+    $scope.myPhotosWidth = {};
     $scope.flickrPhotos = {};
     $scope.flickr = {};
+    $scope.tags = {};
+
+    $scope.searchPhotos = [];
+    $scope.searchWidth = {};
 
     var numFlicker;
 
@@ -22,14 +28,7 @@ angular.module('starter.controllers', [])
         }
         $scope.images[i].width = total/2;
     }
-    for (var i = 0; i < photos.length; i++) {
-        var total = 0;
-        for (var j = 0; j < photos[i].src.length; j++) {
-            total += photoSize[j % photoSize.length] + 50;
-
-        }
-        $scope.images[i].width = total / 2;
-    }
+   
 
     
 
@@ -55,11 +54,28 @@ angular.module('starter.controllers', [])
 
     
     $scope.search = function (value) {
-        wsAPI.getPrescriptions(value).success(function (data) {
-            console.log(data);
+        var tags = value.split(",");
+        for (var i = 0; i < tags.length; i++)
+        {
+            tags[i] = tags[i].trim();
+            if (tags[i] == ' ' || tags[i] == '') {
+                tags.splice(i, 1);
+                
+            }
+        }
+        $scope.tags = tags;
+        wsAPI.searchPhotos(value).success(function (data) {
+            $scope.searchPhotos = data;
+            var total = 0;
+            for (var i = 0; i < $scope.searchPhotos.length; i++) {
+                
+                total += photoSize[i % photoSize.length] + 15;
+            }
+            $scope.searchWidth = total / 2;
         });
 
     }
+
 
 
 
@@ -73,14 +89,32 @@ angular.module('starter.controllers', [])
     });  
 
     $scope.loadPhoto = function (date, photo) {
-        if (date >= 0) {
+        $scope.currentPhotoUrl = {};
+        if (date == 1) {
+            $scope.currentPhoto = photo;
+            $scope.currentDate = date;
+
+            $scope.currentPhotoUrl = $scope.myPhotos[photo].url;
+
+            $scope.modal.scope = $scope;
+            $scope.modal.show();
+        }
+        else if (date == 0) {
             $scope.currentPhoto = photo;
             $scope.currentDate = date;
 
             $scope.currentPhotoUrl = $scope.images[date].src[photo];
-            console.log($scope.currentPhotoUrl);
 
             $scope.modal.scope = $scope;
+            $scope.modal.show();
+        }
+        else if (date == 2) {
+            $scope.currentPhoto = photo;
+            $scope.currentDate = date;
+
+            $scope.currentPhotoUrl = $scope.searchPhotos[photo].url;
+            console.log($scope.currentPhotoUrl);
+                     $scope.modal.scope = $scope;
             $scope.modal.show();
         }
         else {
@@ -93,6 +127,8 @@ angular.module('starter.controllers', [])
             $scope.modal.scope = $scope;
             $scope.modal.show();
         }
+
+
         
     }
 
@@ -100,10 +136,21 @@ angular.module('starter.controllers', [])
        
         var date = $scope.currentDate;
         var photo;
-        if (date >= 0) {
+        if (date == 1) {
+            photo = ($scope.currentPhoto + 1) % $scope.myPhotos.length;
+            $scope.currentPhoto = photo;
+            $scope.currentPhotoUrl = $scope.myPhotos[photo].url;
+            console.log($scope.currentPhotoUrl);
+        }
+        else if (date == 0) {
             photo = ($scope.currentPhoto + 1) % $scope.images[date].src.length;
             $scope.currentPhoto = photo;
             $scope.currentPhotoUrl = $scope.images[date].src[photo];
+        }
+        else if (date == 2) {
+            photo = ($scope.currentPhoto + 1) % $scope.searchPhotos.length;
+            $scope.currentPhoto = photo;
+            $scope.currentPhotoUrl = $scope.searchPhotos[photo].url;
         }
         else {
       
@@ -117,7 +164,25 @@ angular.module('starter.controllers', [])
     $scope.swipeRight = function () {
         var date = $scope.currentDate;
         var photo;
-        if (date >= 0) {
+        if (date == 1) {
+            photo = ($scope.currentPhoto - 1) % $scope.myPhotos.length;
+            if (photo < 0) {
+                photo = $scope.myPhotos.length - 1;
+            }
+            $scope.currentPhoto = photo;
+           
+            $scope.currentPhotoUrl = $scope.myPhotos[photo].url;
+        }
+        else if (date == 2) {
+            photo = ($scope.currentPhoto - 1) % $scope.searchPhotos.length;
+            if (photo < 0) {
+                photo = $scope.searchPhotos.length - 1;
+            }
+            $scope.currentPhoto = photo;
+
+            $scope.currentPhotoUrl = $scope.searchPhotos[photo].url;
+        }
+        else if (date == 0) {
             photo = ($scope.currentPhoto - 1) % $scope.images[date].src.length;
             $scope.currentPhoto = photo;
             $scope.currentPhotoUrl = $scope.images[date].src[photo];
@@ -132,27 +197,45 @@ angular.module('starter.controllers', [])
 
     $scope.searchGeo = function () {
         navigator.geolocation.getCurrentPosition(function (position) {
+            wsAPI.getPhotosGeo(position.coords.latitude, position.coords.longitude).success(function (data) {
+                if (data.length > 0) {
+                    $scope.myPhotos = data;
+                    console.log(data);
+                    var total = 0;
+                    for (var i = 0; i < $scope.myPhotos.length; i++) {
+                        
+                        total += photoSize[i % photoSize.length] + 50;
+                    }
+                    $scope.myPhotosWidth = total / 2;
+                }
+            });
+        });
+    }
 
+
+    $scope.searchGeoFlickr = function () {
+        navigator.geolocation.getCurrentPosition(function (position) {
+
+           
+
+            //FLICKR
             //console.log(position.coords.latitude);
             var apikey = "0ce4e9dc51e53f48128403886f827dbe";
-            //var photosByLocation = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=" + apikey + "&sort=interestingness-desc&privacy_filter=1&media=photos&lat=" + position.coords.latitude + "&lon=" + position.coords.longitude + "&radius=0.2&per_page=10&page=1&format=json&nojsoncallback=1&auth_token=72157654714260099-4315478173f74ab0&api_sig=f85fc7526f0c01fe6074c6495e0654cf";
 
-            var bkupUrl = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=31b5e4dd35373f2889a2b477ab491030&sort=interestingness-desc&privacy_filter=1&media=photos&lat=51.530881&lon=-0.152524&radius=0.2&per_page=10&page=1&format=json&nojsoncallback=1&auth_token=72157654714260099-4315478173f74ab0&api_sig=f85fc7526f0c01fe6074c6495e0654cf";
-            
+            var photosQuery = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=31b5e4dd35373f2889a2b477ab491030&sort=interestingness-desc&privacy_filter=1&media=photos&lat=" + position.coords.latitude.toString() + "&lon=" + position.coords.longitude.toString() + "&radius=0.2&per_page=50&page=1&format=json&nojsoncallback=1";
+
             numFlicker = 0;
-            $http.get(bkupUrl).
+            $http.get(photosQuery).
                 success(function (data, status, headers, config) {
                     // this callback will be called asynchronously
                     // when the response is available
 
                     angular.forEach(data.photos.photo, function (photoelement) {
-                        console.log(photoelement.id);
 
                         var photoUrl = "https://api.flickr.com/services/rest/?method=flickr.photos.getSizes&api_key=31b5e4dd35373f2889a2b477ab491030&photo_id=" + photoelement.id.toString() + "&format=json&nojsoncallback=1";
 
                         $http.get(photoUrl).
                             success(function (data, status, headers, config) {
-                                console.log(data.sizes.size[5].source);
                                 $scope.flickrPhotos[numFlicker] = data.sizes.size[5].source;
                                 numFlicker++;
 
@@ -160,15 +243,14 @@ angular.module('starter.controllers', [])
 
                                 var total = 0;
                                 for (var j = 0; j < numFlicker; j++) {
-                                    total += photoSize[j % photoSize.length] + 15;
+                                    total += photoSize[j % photoSize.length] + 57;
                                     
 
                                 }
                                 $scope.flickr.width = total / 2;
-                                console.log($scope.flickr.width);
                             }).
                             error(function (data, status, headers, config) {
-                                alert("Unable to download photo");
+                                console.log("Unable to download photo");
                             });
 
 
@@ -177,14 +259,25 @@ angular.module('starter.controllers', [])
                 error(function (data, status, headers, config) {
                     // called asynchronously if an error occurs
                     // or server returns response with an error status.
-                    alert("Unable to find photos");
+                    console.log("Unable to find photos");
                 });
 
         });
 
+      
     }
 
+    
+    $scope.searchGeoFlickr();
     $scope.searchGeo();
+
+    $scope.callAtTimeout = function () {
+        $scope.searchGeo();
+        
+        $timeout(function () { $scope.callAtTimeout(); }, 3000);
+    }
+
+  //  $timeout(function () { $scope.callAtTimeout(); }, 3000);
 
 })
 
@@ -192,7 +285,8 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
+.controller('SearchCtrl', function ($scope, $stateParams, Chats) {
+
 
 })
 
@@ -201,18 +295,21 @@ angular.module('starter.controllers', [])
     $scope.searchGeo= function(){
         navigator.geolocation.getCurrentPosition(function(position) {
 
-            //console.log(position.coords.latitude);
+            console.log(position.coords.latitude.toString());
+            console.log(position.coords.longitude.toString());
             var apikey = "0ce4e9dc51e53f48128403886f827dbe";
-            //var photosByLocation = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=" + apikey + "&sort=interestingness-desc&privacy_filter=1&media=photos&lat=" + position.coords.latitude + "&lon=" + position.coords.longitude + "&radius=0.2&per_page=10&page=1&format=json&nojsoncallback=1&auth_token=72157654714260099-4315478173f74ab0&api_sig=f85fc7526f0c01fe6074c6495e0654cf";
 
-            var bkupUrl = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=31b5e4dd35373f2889a2b477ab491030&sort=interestingness-desc&privacy_filter=1&media=photos&lat=51.530881&lon=-0.152524&radius=0.2&per_page=10&page=1&format=json&nojsoncallback=1&auth_token=72157654714260099-4315478173f74ab0&api_sig=f85fc7526f0c01fe6074c6495e0654cf";
+            var photosQuery = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=31b5e4dd35373f2889a2b477ab491030&sort=interestingness-desc&privacy_filter=1&media=photos&lat=" + position.coords.latitude.toString() + "&lon=" + position.coords.longitude.toString() + "&radius=0.2&per_page=10&page=1&format=json&nojsoncallback=1";
+            var testUrl = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=31b5e4dd35373f2889a2b477ab491030&sort=interestingness-desc&privacy_filter=1&media=photos&lat=51.530881&lon=-0.152524&radius=0.2&per_page=10&page=1&format=json&nojsoncallback=1&auth_token=72157654714260099-4315478173f74ab0&api_sig=f85fc7526f0c01fe6074c6495e0654cf";
+
+            console.log(photosQuery);
             $scope.photos = {};
             var numPhotos = 0;
-            $http.get(bkupUrl).
+            $http.get(photosQuery).
                 success(function(data, status, headers, config) {
                     // this callback will be called asynchronously
                     // when the response is available
-
+                    console.log(data);
                     angular.forEach(data.photos.photo, function(photoelement){
                         console.log(photoelement.id);
 

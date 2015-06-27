@@ -16,17 +16,15 @@ angular.module('starter.services', [])
 })
 .factory('wsAPI', ['$http', function ($http) {
     return {
-        searchPhoto: function (tags) {
-            $http.defaults.headers.common['startTime'] = date;
-            return $http.put('http://hackrisk.utfapp.com/prescriptions/' + id,
+        searchPhotos: function (tags) {
+            return $http.get('http://htv.utfapp.com/searchByTags?tags='+tags,
                 {
                 }
             );
         },
-        postExam: function (value) {
-            $http.defaults.headers.common['examValue'] = value;
-            $http.defaults.headers.common['examType'] = "glycemia";
-            return $http.post('http://hackrisk.utfapp.com/exams',
+        getPhotosGeo: function (lat, lon) {
+
+            return $http.get('http://htv.utfapp.com/searchByLocation?lat=' + lat + '&lon=' + lon,
                 {
                 }
             );

@@ -6,7 +6,7 @@ body{
 }
 
 .darkBackground{
-    background-color: #ECF0F1 !important;
+    background-color: white !important;
     
 }
 .pastImage{
@@ -56,6 +56,13 @@ body{
 .largeIcon{
     font-size: 22px;
     
+}
+
+.modalImage{
+
+    height: 200px;
+    object-fit: cover;
+    object-position: center;
 }
 
 .imgDisplay{
@@ -110,9 +117,53 @@ body{
     float: right;
 }
 
+.noBorders{
+    border: none !important;
+}
+
+.headerBar{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #D35400;
+    width: 100%;
+    text-align: center;
+}
+
 .modalImage{
     width: 100%;
-    margin-top: 100px;
+    margin-top: 125px;
+}
+.tagBox{
+    border: 1px solid #E67E22;
+    border-radius: 2px;
+    padding: 3px;
+    font-family: Roboto-Thin;
+    color: #E67E22;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    float: left;
+   
+}
+
+.tagContainer{
+   text-align: center;
+   margin-left: 40px;
+ 
+}
+.smaller{
+
+}
+.searchMessage{
+    padding-top: 100px;
+    margin-top: 250px;
+    font-size: 46px;
+    font-family: Roboto-Thin;
+    width: 80%;
+    margin: auto;
+    text-align: center;
+ 
+    line-height: 46px;
 }
 
 .marginRight{
@@ -127,6 +178,7 @@ body{
 }
 .rightBar{
     border-right: solid 3px #F27935;
+
 }
 .floatLeft{
     float: left;
@@ -134,11 +186,11 @@ body{
 
 .contentTitle{
     margin-top: 15px;
-    margin-left: 40px;
+    margin-left: 70px;
 }
 
 .modal{
-    background-color: rgba(0,0,0,0.7);
+    background-color: rgba(0,0,1,0.8);
     
 }
 
@@ -233,3 +285,5 @@ body{
 .reveal-animation.ng-leave.ng-leave-active {
   opacity: 0;
 }
+
+

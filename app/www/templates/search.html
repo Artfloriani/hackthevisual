@@ -1,0 +1,55 @@
+<ion-view>
+    <ion-content class="darkBackground">
+        <div class="darkBackground">
+            <div class="topBar">
+                <div class="largeFont marginTop">
+                    <i class="icon ion-navicon whiteFont largeIcon marginRight" menu-toggle="left"></i>
+                </div>
+            </div>
+            <div id="searchBox" class="list list-inset marginLeft">
+                <label class="item item-input darkBackground whiteFont borderColor">
+                    <i class="icon ion-search placeholder-icon whiteFont"></i>
+
+                    <form ng-submit="search(query)">
+                        <input type="text" placeholder="Search location OR tags" class="whiteFont" ng-model="query" ng-enter="search(query)">
+                    </form>
+                </label>
+            </div>
+
+            <div class="contentContainer">
+                <div ng-repeat="tag in tags" class="tagContainer">
+                    <div class="tagBox  largeFont">
+                        {{tag}}
+                    </div>
+                </div>
+                <div class="largeFont contentTitle floatLeft" ng-show="!showSearch">
+                    You are in <span class="accentColor">{{myPhotos[0].city}}</span>
+                </div>
+
+
+
+                <div class="dateContainer">
+                    <div class="titleContainer largeFont leftMargin titleBackground darkFont">
+                        Photos from here
+                    </div>
+                    <ion-scroll overflow-scroll="true" zooming="false" direction="x" style="width: 400px; height: 430px">
+                        <div ng-repeat="(key, photo) in myPhotos">
+
+                            <div class="wide-as-needed" ng-style="{ width : myPhotosWidth + 'px' }">
+                                <div class="imgContainer" ng-style="{{dinStyle}} " ng-click="loadPhoto(1, key)">
+
+                                    <img ng-src="{{photo.url}}" class="pastImage imgDisplay" ng-class="imgClass[$index]">
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </ion-scroll>
+                </div>
+
+
+            </div>
+
+        </div>
+    </ion-content>
+</ion-view>
