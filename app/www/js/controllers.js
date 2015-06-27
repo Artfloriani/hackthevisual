@@ -201,18 +201,21 @@ angular.module('starter.controllers', [])
     $scope.searchGeo= function(){
         navigator.geolocation.getCurrentPosition(function(position) {
 
-            //console.log(position.coords.latitude);
+            console.log(position.coords.latitude.toString());
+            console.log(position.coords.longitude.toString());
             var apikey = "0ce4e9dc51e53f48128403886f827dbe";
-            //var photosByLocation = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=" + apikey + "&sort=interestingness-desc&privacy_filter=1&media=photos&lat=" + position.coords.latitude + "&lon=" + position.coords.longitude + "&radius=0.2&per_page=10&page=1&format=json&nojsoncallback=1&auth_token=72157654714260099-4315478173f74ab0&api_sig=f85fc7526f0c01fe6074c6495e0654cf";
 
-            var bkupUrl = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=31b5e4dd35373f2889a2b477ab491030&sort=interestingness-desc&privacy_filter=1&media=photos&lat=51.530881&lon=-0.152524&radius=0.2&per_page=10&page=1&format=json&nojsoncallback=1&auth_token=72157654714260099-4315478173f74ab0&api_sig=f85fc7526f0c01fe6074c6495e0654cf";
+            var photosQuery = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=31b5e4dd35373f2889a2b477ab491030&sort=interestingness-desc&privacy_filter=1&media=photos&lat=" + position.coords.latitude.toString() + "&lon=" + position.coords.longitude.toString() + "&radius=0.2&per_page=10&page=1&format=json&nojsoncallback=1";
+            var testUrl = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=31b5e4dd35373f2889a2b477ab491030&sort=interestingness-desc&privacy_filter=1&media=photos&lat=51.530881&lon=-0.152524&radius=0.2&per_page=10&page=1&format=json&nojsoncallback=1&auth_token=72157654714260099-4315478173f74ab0&api_sig=f85fc7526f0c01fe6074c6495e0654cf";
+
+            console.log(photosQuery);
             $scope.photos = {};
             var numPhotos = 0;
-            $http.get(bkupUrl).
+            $http.get(photosQuery).
                 success(function(data, status, headers, config) {
                     // this callback will be called asynchronously
                     // when the response is available
-
+                    console.log(data);
                     angular.forEach(data.photos.photo, function(photoelement){
                         console.log(photoelement.id);
 
