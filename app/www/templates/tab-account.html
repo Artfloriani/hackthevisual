@@ -1,9 +1,11 @@
 <ion-view view-title="Account">
   <ion-content>
-    <ion-list>
-    <ion-toggle  ng-model="settings.enableFriends">
-        Enable Friends
-    </ion-toggle>
-    </ion-list>
+    <div ng-click="searchGeo()">
+    CLICK ME
+    </div>
+    <div ng-repeat="photo in photos">
+    
+      <img ng-src="{{photo}}">
+    </div>
   </ion-content>
 </ion-view>
