@@ -106,9 +106,10 @@
                       </div>
 
                       <ion-scroll overflow-scroll="true" zooming="false" direction="x" style="width: 400px; height: 410px" ng-if="searchPhotos.length > 0">
-                          <div ng-repeat="(key, photo) in searchPhotos">
 
-                              <div class="wide-as-needed" ng-style="{ width : searchWidth + 'px' }">
+                          <div class="wide-as-needed" ng-style="{ width : searchWidth + 'px' }">
+                              <div ng-repeat="(key, photo) in searchPhotos">
+
                                   <div class="imgContainer" ng-style="{{dinStyle}} " ng-click="loadPhoto(-2, key)">
 
                                       <img ng-src="{{photo.url}}" class="pastImage imgDisplay" ng-class="imgClass[$index]">
