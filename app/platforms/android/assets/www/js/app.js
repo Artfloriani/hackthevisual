@@ -12,9 +12,9 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
 .run(function($ionicPlatform) {
     $ionicPlatform.ready(function () {
-        document.addEventListener('deviceready', function () {
-            cordova.plugins.backgroundMode.enable();
-        }, false);
+
+  
+        
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
         if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
@@ -24,6 +24,9 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
             // org.apache.cordova.statusbar required
             StatusBar.styleLightContent();
         }
+
+
+        
     });
 })
 
@@ -39,7 +42,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       .state('menu', {
           url: "/menu",
           abstract: true,
-          templateUrl: "templates/menu.html"
+          templateUrl: "templates/menu.html",
+      
       })
 
     // Each tab has its own nav history stack:

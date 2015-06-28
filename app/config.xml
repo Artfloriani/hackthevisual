@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <widget xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:vs="http://schemas.microsoft.com/appx/2014/htmlapps" id="io.cordova.myapp817ccecd89554a2e8a01175a448b6489" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" defaultlocale="en-US">
-  <name>app</name>
+  <name>RememberMe</name>
   <description>A blank project that uses Apache Cordova to help you build an app that targets multiple mobile platforms: Android, iOS, Windows, and Windows Phone.</description>
   <author href="http://cordova.io" email="dev@cordova.apache.org">Apache Cordova Team </author>
   <content src="index.html" />
@@ -91,5 +91,9 @@
     <splash src="res/screens/wp8/SplashScreenImage.jpg" width="480" height="800" />
   </platform>
   <vs:plugin name="org.apache.cordova.geolocation" version="0.3.12" />
-  <vs:plugin name="de.appplant.cordova.plugin.background-mode" version="0.6.4" />
+  <preference name="KeepRunning" value="False" />
+  <preference name="ShowTitle" value="True" />
+  <preference name="InAppBrowserStorageEnabled" value="False" />
+  <preference name="SuppressesIncrementalRendering" value="True" />
+  <vs:plugin name="de.appplant.cordova.plugin.local-notification" version="0.8.1" />
 </widget>

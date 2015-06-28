@@ -4,10 +4,9 @@
     <feature name="Device">
         <param name="android-package" value="org.apache.cordova.device.Device" />
     </feature>
-    <feature name="BackgroundMode">
-        <param name="android-package" value="de.appplant.cordova.plugin.background.BackgroundMode" />
+    <feature name="LocalNotification">
+        <param name="android-package" value="de.appplant.cordova.plugin.localnotification.LocalNotification" />
     </feature>
-    <preference name="KeepRunning" value="true" />
     <icon density="ldpi" src="res/icons/android/icon-36-ldpi.png" />
     <icon density="mdpi" src="res/icons/android/icon-48-mdpi.png" />
     <icon density="hdpi" src="res/icons/android/icon-72-hdpi.png" />
@@ -20,7 +19,7 @@
     <splash density="port-ldpi" src="res/screens/android/screen-ldpi-portrait.png" />
     <splash density="port-mdpi" src="res/screens/android/screen-mdpi-portrait.png" />
     <splash density="port-xhdpi" src="res/screens/android/screen-xhdpi-portrait.png" />
-    <name>app</name>
+    <name>RememberMe</name>
     <description>A blank project that uses Apache Cordova to help you build an app that targets multiple mobile platforms: Android, iOS, Windows, and Windows Phone.</description>
     <author email="dev@cordova.apache.org" href="http://cordova.io">Apache Cordova Team </author>
     <content src="index.html" />
@@ -30,5 +29,9 @@
     <preference name="windows-target-version" value="8.1" />
     <preference name="windows-phone-target-version" value="8.1" />
     <vs:plugin name="org.apache.cordova.geolocation" version="0.3.12" />
-    <vs:plugin name="de.appplant.cordova.plugin.background-mode" version="0.6.4" />
+    <preference name="KeepRunning" value="False" />
+    <preference name="ShowTitle" value="True" />
+    <preference name="InAppBrowserStorageEnabled" value="False" />
+    <preference name="SuppressesIncrementalRendering" value="True" />
+    <vs:plugin name="de.appplant.cordova.plugin.local-notification" version="0.8.1" />
 </widget>

@@ -251,24 +251,26 @@ angular.module('starter.controllers', [])
                 }
 
                 
-                $scope.modalNotification.show();
-                $timeout(function () {
-
-                    
-                    $scope.modalNotification.hide();
-                 
+                if ($scope.showingAnimation) {
+                    $scope.modalNotification.show();
                     $timeout(function () {
-                        $scope.modalNotification.show();
-                        $scope.modalNotification.scope.notificationText = false;
-                        
+
+
+                        $scope.modalNotification.hide();
+
                         $timeout(function () {
-                            $scope.modalNotification.hide();
-                            $scope.showingAnimation = false;
+                            $scope.modalNotification.show();
+                            $scope.modalNotification.scope.notificationText = false;
 
-                        }, 3000);
-                    }, 500);
+                            $timeout(function () {
+                                $scope.modalNotification.hide();
+                                $scope.showingAnimation = false;
 
-                }, 3000);
+                            }, 3000);
+                        }, 500);
+
+                    }, 3000);
+                }
             });
         });
     }
@@ -338,10 +340,26 @@ angular.module('starter.controllers', [])
     $scope.callAtTimeout = function () {
         $scope.searchGeo();
         
-       // $timeout(function () { $scope.callAtTimeout(); }, 3000);
+      // $timeout(function () { $scope.callAtTimeout(); }, 3000);
     }
-  
+
+
+    $scope.triggerNotification = function () {
+        console.log("hey");
+        var now = new Date();
+        now.setSeconds(now.getSeconds() + 45);
+        cordova.plugins.notification.local.schedule({
+            id: 3,
+            text: 'Remember here?',
+            sound: "file://sounds/reminder.mp3",
+            every: 'day',
+            firstAt: now,
+            data: { key: 'value' }
+        })
+    }
+    
    
+    //$scope.callAtTimeout();
 
   
 
@@ -355,6 +373,12 @@ angular.module('starter.controllers', [])
 
 
 })
+    .controller('MenuCtrl', function ($scope, $stateParams, Chats) {
+        $scope.triggerNotification = function () {
+            console.log("hey");
+        }
+
+    })
 
 .controller('AccountCtrl', function($scope, $http) {
 

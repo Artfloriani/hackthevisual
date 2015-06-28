@@ -1,11 +1,11 @@
 cordova.define('cordova/plugin_list', function(require, exports, module) {
 module.exports = [
     {
-        "file": "plugins/de.appplant.cordova.plugin.background-mode/www/background-mode.js",
-        "id": "de.appplant.cordova.plugin.background-mode.BackgroundMode",
+        "file": "plugins/de.appplant.cordova.plugin.local-notification/www/local-notification.js",
+        "id": "de.appplant.cordova.plugin.local-notification.LocalNotification",
         "clobbers": [
-            "cordova.plugins.backgroundMode",
-            "plugin.backgroundMode"
+            "cordova.plugins.notification.local",
+            "plugin.notification.local"
         ]
     },
     {
@@ -20,7 +20,7 @@ module.exports.metadata =
 // TOP OF METADATA
 {
     "org.apache.cordova.geolocation": "0.3.12",
-    "de.appplant.cordova.plugin.background-mode": "0.6.4",
+    "de.appplant.cordova.plugin.local-notification": "0.8.1",
     "org.apache.cordova.device": "0.3.0"
 }
 // BOTTOM OF METADATA

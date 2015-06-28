@@ -49,6 +49,11 @@ body{
     border-bottom: 1px solid #22A7F0;
     margin-bottom: 5px;
     margin-top: 5px;
+
+}
+
+.wideScroll{
+
 }
 
 .largerFont{
@@ -71,6 +76,12 @@ body{
     height: 200px;
     object-fit: cover;
     object-position: center;
+}
+
+.moreGap{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 20px;
 }
 
 .marginTopImage{
@@ -104,7 +115,7 @@ body{
 }
 
 .wide-as-needed {
- 
+ overflow-x: scroll;
 }
 
 .scroll { 
