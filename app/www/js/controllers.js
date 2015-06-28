@@ -270,6 +270,7 @@ angular.module('starter.controllers', [])
 
                         $timeout(function () {
                             $scope.modalNotification.scope.displayUrl = $scope.myPhotos[0].pictures[6].url;
+                            $scope.modalNotification.scope.notifyYear = $scope.myPhotos[0].year;
                             $scope.modalNotification.show();
                             $scope.modalNotification.scope.notificationText = false;
                             $timeout(function () {
@@ -277,12 +278,14 @@ angular.module('starter.controllers', [])
                                 $scope.modalNotification.hide();
                                 $timeout(function () {
                                     $scope.modalNotification.scope.displayUrl = $scope.myPhotos[1].pictures[4].url;
+                                    $scope.modalNotification.scope.notifyYear = $scope.myPhotos[1].year;
                                     $scope.modalNotification.show();
 
                                     $timeout(function () {
                                         $scope.modalNotification.hide();
                                         $timeout(function () {
                                             $scope.modalNotification.scope.displayUrl = $scope.myPhotos[2].pictures[0].url;
+                                            $scope.modalNotification.scope.notifyYear = $scope.myPhotos[2].year;
                                             $scope.modalNotification.show();
 
                                             $timeout(function () {

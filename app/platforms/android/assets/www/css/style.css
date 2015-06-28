@@ -119,8 +119,25 @@ body{
 
 }
 
+#flickrLogo{
+   
+    width: 75px;
+    height: 24px;
+    object-fit: cover;
+    object-position: center;
+}
+
 .wide-as-needed {
  overflow-x: scroll;
+}
+
+#notificationYear{
+    font-size: 30px;
+    width: 75px;
+    margin: auto;
+    font-family: Roboto-Thin;
+    color: #E67E22;
+    padding-top: 150px;
 }
 
 .scroll { 
@@ -173,6 +190,10 @@ body{
     margin-right: 15px;
     font-size: 22px;
     color: gray;
+}
+.moadelImage2{
+    width: 100%;
+    margin-top: 25px;
 }
 
 .noBorders{

@@ -6,7 +6,7 @@
                       <i class="icon ion-navicon whiteFont largeIcon marginRight" menu-toggle="left"></i>
                       
                       <i class="icon ion-search  whiteFont largeIcon" ng-click="showSearch = !showSearch" ng-show="!showSearch"></i>
-                      <div id="appLogo" ng-show="!showSearch">Remember</div>
+                      <div id="appLogo" ng-show="!showSearch" ng-click="triggerNotification()">Remember</div>
                   </div>
               </div>
               <div id="searchBox" class="list list-inset marginLeft" ng-show="showSearch">
@@ -48,7 +48,7 @@
                   
                   <div class="dateContainer">
                       <div class="titleContainer largerFont leftMargin">
-                          Photos around <span ng-click="triggerNotification()">here</span>
+                        
                       </div>
                       <div ng-repeat="(keyDate, dates) in myPhotos">
 
@@ -74,7 +74,7 @@
                       <div class="dateContainer">
 
                           <div class="largeFont leftMargin titleBackground darkFont moreGap normalFont flickrFont">
-                              Flickr Memories
+                             <img id="flickrLogo" src="img/flickr.png"/> <span style="color: #0063db">Memo</span><span style="color: #ff0084">ries</span>
                           </div>
 
                           <ion-scroll overflow-scroll="true" zooming="false" direction="x" style="width: 400px; height: 410px">

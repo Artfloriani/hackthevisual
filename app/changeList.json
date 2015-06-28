@@ -220,7 +220,8 @@
     "www\\templates\\tabs.html",
     "plugins\\org.apache.cordova.device\\plugin.xml",
     "res\\icons\\windows\\Square44x44Logo.scale-240.png",
-    "res\\screens\\android\\screen-mdpi-portrait.png"
+    "res\\screens\\android\\screen-mdpi-portrait.png",
+    "www\\img\\flickr.png"
   ],
   "deletedFilesIos": [],
   "addedPluginsIos": [
@@ -230,11 +231,9 @@
   "deletedPluginsIos": [],
   "changedFiles": [
     "plugins\\android.json",
-    "www\\templates\\dash.html",
     "www\\css\\style.css",
-    "www\\templates\\menu.html",
-    "www\\js\\controllers.js",
-    "www\\templates\\notification.html"
+    "www\\templates\\dash.html",
+    "www\\js\\controllers.js"
   ],
   "deletedFiles": [],
   "addedPlugins": [],
