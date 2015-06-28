@@ -4,8 +4,9 @@
               <div class="topBar">
                   <div class="largeFont marginTop">
                       <i class="icon ion-navicon whiteFont largeIcon marginRight" menu-toggle="left"></i>
-
+                      
                       <i class="icon ion-search  whiteFont largeIcon" ng-click="showSearch = !showSearch" ng-show="!showSearch"></i>
+                      <div id="appLogo" ng-show="!showSearch">Remember</div>
                   </div>
               </div>
               <div id="searchBox" class="list list-inset marginLeft" ng-show="showSearch">
@@ -51,8 +52,8 @@
                       </div>
                       <div ng-repeat="(keyDate, dates) in myPhotos">
 
-                          <div class="largeFont leftMargin titleBackground darkFont">
-                              {{dates.year}}
+                          <div id="year" class="leftMargin titleBackground darkFont moreGap">
+                              {{dates.description}}
                           </div>
 
                           <ion-scroll overflow-scroll="true" zooming="false" direction="x" style="width: 500px; height: 410px">
@@ -72,8 +73,8 @@
                       </div>
                       <div class="dateContainer">
 
-                          <div class="largeFont leftMargin titleBackground darkFont moreGap">
-                              Flickr
+                          <div class="largeFont leftMargin titleBackground darkFont moreGap normalFont flickrFont">
+                              Flickr Memories
                           </div>
 
                           <ion-scroll overflow-scroll="true" zooming="false" direction="x" style="width: 400px; height: 410px">

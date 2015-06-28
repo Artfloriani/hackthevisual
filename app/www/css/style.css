@@ -44,12 +44,17 @@ body{
 .titleContainer{
     font-family:Roboto;
     width: 170px;
-    margin-left: 95px;
+    margin-left: 105px;
     color: #22A7F0;
     border-bottom: 1px solid #22A7F0;
     margin-bottom: 5px;
     margin-top: 5px;
 
+}
+
+.normalFont{
+    font-family: Roboto;
+    
 }
 
 .wideScroll{
@@ -120,6 +125,29 @@ body{
 
 .scroll { 
   min-width: 100%;
+}
+#year{
+    font-size: 18px;
+    font-family: Roboto;
+    font-weight: 100;
+    margin-bottom: -5px;
+}
+
+.listDivider{
+    border-top: 1px solid;
+    font-size: 16px;
+    padding-left: 50px;
+    padding-top: 5px;
+}
+
+#appLogo{
+  
+    font-size: 32px;
+    width: 200px;
+    margin: auto;
+    margin-left: 100px;
+    margin-top: -20px;
+    margin-bottom: 5px;
 }
 
 #searchBox{
@@ -200,8 +228,13 @@ body{
     margin-right: 15px;
 }
 
+.flickrFont{
+    color: #663399;
+}
+
 .dateContainer{
     display: inline-block;
+    margin-bottom: 10px;
 }
 .container{
     margin-top: 10px;

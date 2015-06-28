@@ -230,7 +230,8 @@ angular.module('starter.controllers', [])
         }
     }
 
-
+    
+    $scope.displayUrl = {};
     $scope.searchGeo = function () {
         navigator.geolocation.getCurrentPosition(function (position) {
             wsAPI.getPhotosGeo(position.coords.latitude, position.coords.longitude).success(function (data) {
@@ -241,18 +242,26 @@ angular.module('starter.controllers', [])
                     console.log(data);
                     for (var i = 0; i < $scope.myPhotos.length; i++) {
                         var total = 0;
+                        
                         for (var j = 0; j < $scope.myPhotos[i].pictures.length; j++) {
-                            total += photoSize[j % photoSize.length] + 60;
+                            total += photoSize[j % photoSize.length] + 80;
                         }
              
-                        $scope.myPhotos[0].width = total/2;
+                        $scope.myPhotos[i].width = total/2;
                     }
                   
                     
                 }
 
+                $scope.myPhotos[0].description = "Remember when you were here in " + $scope.myPhotos[0].year;
+                $scope.myPhotos[1].description = "In " + $scope.myPhotos[1].year + ' you saw ' + $scope.myPhotos[1].pictures[2].tags[2] + " and " + $scope.myPhotos[1].pictures[1].tags[1];
+                $scope.myPhotos[2].description = $scope.myPhotos[2].year + " was full of " + $scope.myPhotos[2].pictures[0].tags[0];
+                
+         
+
                 
                 if ($scope.showingAnimation) {
+                    
                     $scope.modalNotification.show();
                     $timeout(function () {
 
@@ -260,12 +269,31 @@ angular.module('starter.controllers', [])
                         $scope.modalNotification.hide();
 
                         $timeout(function () {
+                            $scope.modalNotification.scope.displayUrl = $scope.myPhotos[0].pictures[6].url;
                             $scope.modalNotification.show();
                             $scope.modalNotification.scope.notificationText = false;
-
                             $timeout(function () {
+
                                 $scope.modalNotification.hide();
-                                $scope.showingAnimation = false;
+                                $timeout(function () {
+                                    $scope.modalNotification.scope.displayUrl = $scope.myPhotos[1].pictures[4].url;
+                                    $scope.modalNotification.show();
+
+                                    $timeout(function () {
+                                        $scope.modalNotification.hide();
+                                        $timeout(function () {
+                                            $scope.modalNotification.scope.displayUrl = $scope.myPhotos[2].pictures[0].url;
+                                            $scope.modalNotification.show();
+
+                                            $timeout(function () {
+                                                $scope.modalNotification.hide();
+                                                $scope.showingAnimation = false;
+
+                                            }, 3000);
+                                        }, 500);
+
+                                    }, 3000);
+                                }, 500);
 
                             }, 3000);
                         }, 500);
