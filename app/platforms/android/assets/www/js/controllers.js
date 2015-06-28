@@ -133,6 +133,7 @@ angular.module('starter.controllers', [])
             $scope.currentDate = date;
 
             $scope.currentPhotoUrl = $scope.myPhotos[date].pictures[photo].url;
+            console.log($scope.currentPhotoUrl);
 
             $scope.modal.scope = $scope;
             $scope.modal.show();
