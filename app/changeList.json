@@ -202,7 +202,8 @@
   "changedFiles": [
     "plugins\\android.json",
     "www\\js\\controllers.js",
-    "www\\templates\\dash.html"
+    "www\\templates\\dash.html",
+    "www\\css\\style.css"
   ],
   "deletedFiles": [],
   "addedPlugins": [],

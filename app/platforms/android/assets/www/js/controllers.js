@@ -16,6 +16,10 @@ angular.module('starter.controllers', [])
     $scope.searchPhotos = [];
     $scope.searchWidth = {};
 
+    $scope.notificationText = true;
+
+    $scope.showingAnimation = true;
+
     var numFlicker;
 
     var photoSize = [302, 227, 177, 127, 127, 127, 177, 227, 302];
@@ -123,15 +127,7 @@ angular.module('starter.controllers', [])
 
     $scope.loadPhoto = function (date, photo) {
         $scope.currentPhotoUrl = {};
-        if (date == 1) {
-          //  $scope.currentPhoto = photo;
-            //$scope.currentDate = date;
 
-            //$scope.currentPhotoUrl = $scope.myPhotos[photo].url;
-
-            //$scope.modal.scope = $scope;
-            //$scope.modal.show();
-        }
          if (date >= 0) {
             $scope.currentPhoto = photo;
             $scope.currentDate = date;
@@ -237,7 +233,8 @@ angular.module('starter.controllers', [])
     $scope.searchGeo = function () {
         navigator.geolocation.getCurrentPosition(function (position) {
             wsAPI.getPhotosGeo(position.coords.latitude, position.coords.longitude).success(function (data) {
-                if (data.length > 0 && data.length != $scope.myPhotos.length) {
+
+                if (data.length > 0) {
                     $scope.myPhotos = data;
                             
                     console.log(data);
@@ -246,19 +243,32 @@ angular.module('starter.controllers', [])
                         for (var j = 0; j < $scope.myPhotos[i].pictures.length; j++) {
                             total += photoSize[j % photoSize.length] + 60;
                         }
-                        $scope.myPhotosWidth[i] = total / 2;
-                        $scope.myPhotos[i].width = total/2;
+             
+                        $scope.myPhotos[0].width = total/2;
                     }
-                    console.log($scope.myPhotosWidth[0]);
-
-                    $scope.apply();
-
-
-
-
+                  
                     
                 }
-               // $scope.modalNotification.show();
+
+                
+                $scope.modalNotification.show();
+                $timeout(function () {
+
+                    
+                    $scope.modalNotification.hide();
+                 
+                    $timeout(function () {
+                        $scope.modalNotification.show();
+                        $scope.modalNotification.scope.notificationText = false;
+                        
+                        $timeout(function () {
+                            $scope.modalNotification.hide();
+                            $scope.showingAnimation = false;
+
+                        }, 3000);
+                    }, 500);
+
+                }, 3000);
             });
         });
     }
@@ -320,15 +330,18 @@ angular.module('starter.controllers', [])
 
     
     $scope.searchGeoFlickr();
+    
     $scope.searchGeo();
+
+
 
     $scope.callAtTimeout = function () {
         $scope.searchGeo();
         
        // $timeout(function () { $scope.callAtTimeout(); }, 3000);
     }
-
-  //  $timeout(function () { $scope.callAtTimeout(); }, 3000);
+  
+   
 
   
 

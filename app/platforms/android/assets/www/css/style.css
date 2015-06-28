@@ -42,9 +42,18 @@ body{
 }
 
 .titleContainer{
-    margin-top: 15px;
-    width: 150px;
-    border-bottom: 2px solid #22A7F0;
+    font-family:Roboto;
+    width: 170px;
+    margin-left: 95px;
+    color: #22A7F0;
+    border-bottom: 1px solid #22A7F0;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+.largerFont{
+    font-size: 20px;
+    font-family: Roboto-Thin;
 }
 
 .topBar{
@@ -203,17 +212,34 @@ body{
     background-color: rgba(0,0,1,0.8);
     
 }
+
+
+#motivText{
+    font-size: 42px;
+    font-family: Roboto-Thin;
+    margin-top: 250px;
+    width:100%;
+    line-height: 42px;
+    text-align: center;
+}
+
+
 .whiteBackground{
     background-color: white;
-    background-image: url('/img/frame5.png');
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: center center;
 }
 
+
+
 .accentColor{
     color:#E67E22 ;
     font-family: Roboto;
+}
+
+.notificationColor{
+    color:#E67E22 ;
 }
 
 ::-webkit-input-placeholder { /* WebKit browsers */

@@ -1,6 +1,6 @@
 <ion-view >
   <ion-content class="darkBackground">
-          <div class="darkBackground">
+          <div class="darkBackground" ng-show="!showingAnimation">
               <div class="topBar">
                   <div class="largeFont marginTop">
                       <i class="icon ion-navicon whiteFont largeIcon marginRight" menu-toggle="left"></i>
@@ -22,10 +22,6 @@
               
               <div class="contentContainer" ng-show="!showSearch">
                   
-                  <div class="largeFont contentTitle floatLeft" ng-show="!showSearch">
-                      You are in <span class="accentColor">{{myPhotos[0].pictures[0].city}}</span>
-                  </div>
-
 
                   <!--
                   <div class="dateContainer">
@@ -48,15 +44,18 @@
                   </div>-->
 
 
-
+                  
                   <div class="dateContainer">
+                      <div class="titleContainer largerFont leftMargin">
+                          Photos around here
+                      </div>
                       <div ng-repeat="(keyDate, dates) in myPhotos">
 
-                          <div class="titleContainer largeFont leftMargin titleBackground darkFont">
+                          <div class="largeFont leftMargin titleBackground darkFont">
                               {{dates.year}}
                           </div>
 
-                          <ion-scroll overflow-scroll="true" zooming="false" direction="x" style="width: 410px; height: 410px">
+                          <ion-scroll overflow-scroll="true" zooming="false" direction="x" style="width: 500px; height: 410px">
                               <div class="wide-as-needed" ng-style="{ width : dates.width + 'px' }">
                                   
                                   <div ng-repeat="(key,img) in dates.pictures"  ng-click="loadPhoto(keyDate, key)">
@@ -73,8 +72,8 @@
                       </div>
                       <div class="dateContainer">
 
-                          <div class="titleContainer largeFont leftMargin titleBackground darkFont">
-                              Flickr Photos
+                          <div class="largeFont leftMargin titleBackground darkFont">
+                              Flickr
                           </div>
 
                           <ion-scroll overflow-scroll="true" zooming="false" direction="x" style="width: 400px; height: 410px">
@@ -98,7 +97,7 @@
                   </div>
 
                   <div class="dateContainer">
-                      <div class="titleContainer largeFont leftMargin titleBackground darkFont">
+                      <div class="largeFont leftMargin titleBackground darkFont" ng-if="searchPhotos.length > 0">
                           Search results
                       </div>
                       <div class="searchMessage verticalAlign" ng-if="searchPhotos.length <= 0">
@@ -106,7 +105,7 @@
                           and <span class="accentColor">tags</span>
                       </div>
 
-                      <ion-scroll overflow-scroll="true" zooming="false" direction="x" style="width: 400px; height: 430px" ng-if="searchPhotos.length > 0">
+                      <ion-scroll overflow-scroll="true" zooming="false" direction="x" style="width: 400px; height: 410px" ng-if="searchPhotos.length > 0">
                           <div ng-repeat="(key, photo) in searchPhotos">
 
                               <div class="wide-as-needed" ng-style="{ width : searchWidth + 'px' }">
