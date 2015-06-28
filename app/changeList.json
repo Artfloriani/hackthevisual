@@ -187,7 +187,9 @@
     "plugins\\org.apache.cordova.device\\doc\\it\\index.md",
     "plugins\\org.apache.cordova.device\\CONTRIBUTING.md",
     "plugins\\org.apache.cordova.device\\package.json",
-    "www\\templates\\search.html"
+    "www\\templates\\search.html",
+    "www\\templates\\notification.html",
+    "www\\img\\frame5.png"
   ],
   "deletedFilesIos": [
     "www\\templates\\chat-detail.html"
@@ -199,16 +201,10 @@
   "deletedPluginsIos": [],
   "changedFiles": [
     "plugins\\android.json",
-    "www\\js\\services.js",
     "www\\js\\controllers.js",
-    "www\\js\\app.js",
-    "www\\templates\\dash.html",
-    "www\\css\\style.css",
-    "www\\templates\\search.html"
+    "www\\templates\\dash.html"
   ],
-  "deletedFiles": [
-    "www\\templates\\chat-detail.html"
-  ],
+  "deletedFiles": [],
   "addedPlugins": [],
   "deletedPlugins": []
 }

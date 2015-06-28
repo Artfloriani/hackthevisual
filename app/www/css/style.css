@@ -10,8 +10,8 @@ body{
     
 }
 .pastImage{
-
-    float: left;
+    float:left;
+   
 }
 
 
@@ -59,10 +59,13 @@ body{
 }
 
 .modalImage{
-
     height: 200px;
     object-fit: cover;
     object-position: center;
+}
+
+.marginTopImage{
+    margin-top: 150px !important;
 }
 
 .imgDisplay{
@@ -117,6 +120,13 @@ body{
     float: right;
 }
 
+#backButton{
+    margin-top: -35px;
+    margin-right: 15px;
+    font-size: 22px;
+    color: gray;
+}
+
 .noBorders{
     border: none !important;
 }
@@ -152,7 +162,7 @@ body{
  
 }
 .smaller{
-
+    width: 85%;
 }
 .searchMessage{
     padding-top: 100px;
@@ -192,6 +202,13 @@ body{
 .modal{
     background-color: rgba(0,0,1,0.8);
     
+}
+.whiteBackground{
+    background-color: white;
+    background-image: url('/img/frame5.png');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
 }
 
 .accentColor{

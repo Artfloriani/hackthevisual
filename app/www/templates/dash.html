@@ -17,21 +17,17 @@
                         </form>
 
                     </label>
-                  <i class="icon ion-search placeholder-icon whiteFont"></i>
+                  <i id="backButton" class="icon ion-close whiteFont floatRight" ng-click="showSearch = !showSearch"></i>
               </div>
               
               <div class="contentContainer" ng-show="!showSearch">
-                  <div ng-repeat="tag in tags" class="tagContainer">
-                      <div class="tagBox  largeFont">
-                          {{tag}}
-                      </div>
-                  </div>
+                  
                   <div class="largeFont contentTitle floatLeft" ng-show="!showSearch">
-                      You are in <span class="accentColor">{{myPhotos[0].city}}</span>
+                      You are in <span class="accentColor">{{myPhotos[0].pictures[0].city}}</span>
                   </div>
 
 
-
+                  <!--
                   <div class="dateContainer">
                       <div class="titleContainer largeFont leftMargin titleBackground darkFont">
                           Photos from here
@@ -42,52 +38,56 @@
                               <div class="wide-as-needed" ng-style="{ width : myPhotosWidth + 'px' }">
                                   <div class="imgContainer" ng-style="{{dinStyle}} " ng-click="loadPhoto(1, key)">
 
-                                      <img ng-src="{{photo.url}}" class="pastImage imgDisplay" ng-class="imgClass[$index]">
+                                      <img ng-src="{{myPhotos[0].pictures[key].url}}" class="pastImage imgDisplay" ng-class="imgClass[$index]">
                                   </div>
 
                               </div>
 
                           </div>
                       </ion-scroll>
-                  </div>
+                  </div>-->
 
 
-
-
-                  <div ng-repeat="(keyDate, dates) in images" class="dateContainer">
-
-                      <div class="titleContainer largeFont leftMargin titleBackground darkFont">
-                          {{dates.date}}
-                      </div>
-
-                      <ion-scroll overflow-scroll="true" zooming="false" direction="x" style="width: 400px; height: 430px">
-                          <div class="wide-as-needed" ng-style="{ width : dates.width + 'px' }">
-                              <div ng-repeat="(key,img) in dates.src" class="imgContainer" ng-style="{{dinStyle}} " ng-click="loadPhoto(keyDate, key)">
-
-                                  <img ng-src="{{img}}" class="pastImage imgDisplay" ng-class="imgClass[$index]">
-                              </div>
-
-                          </div>
-                      </ion-scroll>
-                  </div>
 
                   <div class="dateContainer">
+                      <div ng-repeat="(keyDate, dates) in myPhotos">
 
-                      <div class="titleContainer largeFont leftMargin titleBackground darkFont">
-                          Flickr Photos
-                      </div>
-
-                      <ion-scroll overflow-scroll="true" zooming="false" direction="x" style="width: 400px; height: 430px">
-                          <div class="wide-as-needed" ng-style="{ width : flickr.width + 'px' }">
-                              <div ng-repeat="(key,img) in flickrPhotos" class="imgContainer" ng-style="{{dinStyle}} " ng-click="loadPhoto(-1, key)">
-
-                                  <img ng-src="{{img}}" class="pastImage imgDisplay" ng-class="imgClass[key]">
-                              </div>
-
+                          <div class="titleContainer largeFont leftMargin titleBackground darkFont">
+                              {{dates.year}}
                           </div>
-                      </ion-scroll>
+
+                          <ion-scroll overflow-scroll="true" zooming="false" direction="x" style="width: 410px; height: 410px">
+                              <div class="wide-as-needed" ng-style="{ width : dates.width + 'px' }">
+                                  
+                                  <div ng-repeat="(key,img) in dates.pictures"  ng-click="loadPhoto(keyDate, key)">
+                                      <div class="imgContainer">
+                                          
+                                          <img ng-src="{{img.url}}" class="pastImage imgDisplay" ng-class="imgClass[$index]">
+
+                                      </div>
+                                  </div>
+
+                              </div>
+                          </ion-scroll>
+                      </div>
+                      </div>
+                      <div class="dateContainer">
+
+                          <div class="titleContainer largeFont leftMargin titleBackground darkFont">
+                              Flickr Photos
+                          </div>
+
+                          <ion-scroll overflow-scroll="true" zooming="false" direction="x" style="width: 400px; height: 410px">
+                              <div class="wide-as-needed" ng-style="{ width : flickr.width + 'px' }">
+                                  <div ng-repeat="(key,img) in flickrPhotos" class="imgContainer" ng-style="{{dinStyle}} " ng-click="loadPhoto(-1, key)">
+
+                                      <img ng-src="{{img}}" class="pastImage imgDisplay" ng-class="imgClass[key]">
+                                  </div>
+
+                              </div>
+                          </ion-scroll>
+                      </div>
                   </div>
-              </div>
 
 
               <div class="contentContainer" ng-show="showSearch">
@@ -106,11 +106,11 @@
                           and <span class="accentColor">tags</span>
                       </div>
 
-                      <ion-scroll overflow-scroll="true" zooming="false" direction="x" style="width: 400px; height: 430px">
+                      <ion-scroll overflow-scroll="true" zooming="false" direction="x" style="width: 400px; height: 430px" ng-if="searchPhotos.length > 0">
                           <div ng-repeat="(key, photo) in searchPhotos">
 
                               <div class="wide-as-needed" ng-style="{ width : searchWidth + 'px' }">
-                                  <div class="imgContainer" ng-style="{{dinStyle}} " ng-click="loadPhoto(2, key)">
+                                  <div class="imgContainer" ng-style="{{dinStyle}} " ng-click="loadPhoto(-2, key)">
 
                                       <img ng-src="{{photo.url}}" class="pastImage imgDisplay" ng-class="imgClass[$index]">
                                   </div>
